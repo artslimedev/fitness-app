@@ -14,7 +14,7 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 600px;
+    width: 40rem;
     padding: 20px;
     transform: translate(-50%, -50%);
     background: rgba(64, 163, 255, 0.225);
@@ -25,7 +25,7 @@ body {
 }
 
 .workout {
-    width: 500px;
+    width: 30rem;
 }
 
 h2 {

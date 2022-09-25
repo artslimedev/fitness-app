@@ -3,7 +3,7 @@ module.exports = {
   content: [
     './public/**/*.{html,js}', 
     './views/*.ejs', 
-    './node_modules/tw-elements/dist/js/**/*.js'],
+    './node_modules/tw-elements/dist/js/**/*.min.js'],
   theme: {
         screens: {
           sm: '480px',

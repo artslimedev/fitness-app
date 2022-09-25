@@ -4,8 +4,8 @@ const StrengthEntry = require('../models/Strength')
 module.exports = {
     getEntries: async (req, res) => {
         try {
-            const cardioEntries = await CardioEntry.find()
-            const strengthEntries = await StrengthEntry.find()
+            const cardioEntries = await CardioEntry.find({ user: req.user.id }).sort({ createdAt: "desc" }).lean()
+            const strengthEntries = await StrengthEntry.find({ user: req.user.id }).sort({ createdAt: "desc" }).lean()
             res.render("dashboard.ejs", {
                 cardioEntries: cardioEntries,
                 strengthEntries: strengthEntries });
@@ -14,24 +14,24 @@ module.exports = {
         }
     },    
     createCardioEntry: async (req,res) => {
-        const cardioEntry = new CardioEntry(
-            {
-                date: req.body.date,
-                location: req.body.location,
-                sport: req.body.sport,
-                time: req.body.time,
-                distance: req.body.distance,
-                unit: req.body.unit
-            }
-        )
         try {
-            await cardioEntry.save()
-            console.log(cardioEntry)
+            await CardioEntry.create(
+                {
+                    user: req.user.id,
+                    date: req.body.date,
+                    location: req.body.location,
+                    sport: req.body.sport,
+                    time: req.body.time,
+                    distance: req.body.distance,
+                    unit: req.body.unit
+                })
+            console.log(CardioEntry)
+            console.log('Cardio has been added!')
             res.redirect('/dashboard')
-        } catch(err) {
-            if (err) return res.status(500).send(err)
-            res.redirect('/dashboard')
+        }catch(err){
+            console.log(err)
         }
+
     },
     editCardioEntry: async (req,res)=>{
 
@@ -66,46 +66,34 @@ module.exports = {
         res.redirect('/dashboard')
     },
 
+// -----------------------------------------------------
 
 
-    
-    // getStrengthEntries: async (req,res) => {
-    //     console.log(req.user)
-    //     try {
-    //         const entries = await
-    //         StrengthEntry.find()
-    //         console.log({strengthEntries: entries})
-    //         res.render("dashboard.ejs", {
-    //             strengthEntries: entries });
-    //     } catch (err) {
-    //         if (err) return res.status(500).send(err)
-    //     }
-    // },
-    createStrengthEntry: async (req,res)=>{
-        try{
-            await Strength.create(
+// STRENGTH METHODS 
+
+
+// -----------------------------------------------------
+
+
+    createStrengthEntry: async (req,res) => {
+        try {
+            await StrengthEntry.create(
                 {
-                    userId: req.user.id,
+                    user: req.user.id,
                     date: req.body.date,
                     name: req.body.name,
                     equipment: req.body.equipment,
                     muscle: req.body.muscle,
                     weight: req.body.weight,
                     unit: req.body.unit
-                }
-            )
+                })
 
-        await strengthEntry.save()
-        
-        console.log(strengthEntry)
-
-        res.redirect('/')
-
-            
-        } catch(err) {
-            if (err) return res.status(500).send(err)
-            res.redirect('/')
-            }
+            console.log(StrengthEntry)
+            console.log('Strength Entry has been added!')
+            res.redirect('/dashboard')
+        }catch(err){
+            console.log(err)
+        }
     },
     editStrengthEntry: async (req,res)=>{
 
@@ -118,7 +106,6 @@ module.exports = {
             await StrengthEntry.findByIdAndUpdate(
                 id,
                 {
-                    userId: req.user.id,
                     date: req.body.date,
                     name: req.body.name,
                     equipment: req.body.equipment,

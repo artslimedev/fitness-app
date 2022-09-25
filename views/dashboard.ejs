@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
-    <script src="../node_modules/tw-elements/dist/js/index.min.js"></script>
     <link rel="stylesheet" href="./css/main.css">
-    <script src="../public/js/main.js"></script>
+    <script src="/public/js/main.js"></script>
 </head>
 <body class="h-full">
+
+
 
 <!--------------------------------------------------------------------------------------------------------
 
@@ -65,7 +65,7 @@
                         </a>
                     </li>
                     <li><a>Settings</a></li>
-                    <li><a>Logout</a></li>
+                    <li><a href="/logout">Logout</a></li>
                     </ul>
                 </div>
                 </div>
@@ -209,19 +209,24 @@
                                 <div class="container mx-auto flex flex-row justify-center">
 
 
-                                    <form action="/createCardioEntry" method="POST" class="flex flex-row">
+                                    <form action="/dashboard/createCardioEntry" method="POST" class="flex flex-row">
 
     
-                                    <input type="date" placeholder="Date" class="input input-bordered w-full max-w-xs mr-4"/>
-                                    <input type="text" placeholder="Location" class="input input-bordered w-full max-w-xs mr-4"/>
-                                    <select class="select w-fit max-w-xs input-bordered mr-4">
+                                    <input type="date" placeholder="Date" name="date" pattern="\d{4}-\d{2}-\d{2}" class="input input-bordered w-full max-w-xs mr-4" required/>
+
+                                    <input type="text" placeholder="Location" name="location" class="input input-bordered w-full max-w-xs mr-4" required/>
+
+                                    <select name="sport" class="select w-fit max-w-xs input-bordered mr-4" required>
                                         <option disabled selected>Sport</option>
                                         <option>Bike</option>
                                         <option>Run</option>
                                     </select>
-                                    <input type="text" placeholder="Time 00:00:00" class="input input-bordered w-full max-w-xs mr-4" />
-                                    <input type="number" placeholder="Distance" class="input input-bordered w-full max-w-xs mr-4" />
-                                    <select class="select w-fit max-w-xs input-bordered mr-4">
+
+                                    <input type="text" placeholder="Time 00:00:00" name="time" class="input input-bordered w-full max-w-xs mr-4" required/>
+
+                                    <input type="number" step="0.1" min="0" placeholder="Distance" name="distance" class="input input-bordered w-full max-w-xs mr-4" required/>
+
+                                    <select name="unit" class="select w-fit max-w-xs input-bordered mr-4" required>
                                         <option disabled selected>Unit</option>
                                         <option>mi</option>
                                         <option>km</option>
@@ -266,7 +271,7 @@
 
                                             <% cardioEntries.forEach( entry => { %>
                                             <tr class='cardioItem' data-id='<%= entry._id %>'>
-                                            <th class="cardio-list-item-date"><%= entry.date %></th>
+                                            <td class="cardio-list-item-date"><%= entry.date %></td>
                                             <td class="cardio-list-item-location"><%= entry.location %></td>
                                             <td class="cardio-list-item-sport"><%= entry.sport %></td>
                                             <td class="cardio-list-item-time"><%= entry.time %></td>
@@ -308,16 +313,18 @@
                                 <div class="container mx-auto flex flex-row justify-center">
                                     
 
-                                    <form action="/createStrengthEntry" method="post" class="flex flex-row">
+                                    <form action="/dashboard/createStrengthEntry" method="POST" class="flex flex-row">
 
     
-                                    <input type="date" placeholder="Date" class="input input-bordered w-full max-w-xs mr-4"/>
-                                    <select class="select w-fit max-w-xs input-bordered mr-4">
+                                    <input type="date" placeholder="Date" name="date" class="input input-bordered w-full max-w-xs mr-4" required/>
+
+                                    <select name="equipment" class="select w-fit max-w-xs input-bordered mr-4" required>
                                         <option disabled selected>Equipment</option>
                                         <option>Machine</option>
                                         <option>Free Weights</option>
                                     </select>
-                                    <select class="select w-fit max-w-xs input-bordered mr-4">
+
+                                    <select name="muscle" class="select w-fit max-w-xs input-bordered mr-4" required>
                                         <option disabled selected>Muscle</option>
                                         <option>Shoulders</option>
                                         <option>Chest</option>
@@ -329,8 +336,10 @@
                                         <option>Hamstrings</option>
                                         <option>Calves</option>
                                     </select>
-                                    <input type="number" placeholder="Weight" class="input input-bordered w-full max-w-xs mr-4"/>
-                                    <select class="select w-fit max-w-xs input-bordered mr-4">
+
+                                    <input type="number" step="0.1" min="0" placeholder="Weight" name="weight" class="input input-bordered w-full max-w-xs mr-4" required/>
+
+                                    <select name="unit" class="select w-fit max-w-xs input-bordered mr-4" required>
                                         <option disabled selected>Unit</option>
                                         <option>lbs</option>
                                         <option>kg</option>
@@ -428,7 +437,11 @@
     
 
     </div>
+
+
   
-        
+    <script src="/index.min.js"></script>
+    
+    
 </body>
 </html>

@@ -1,17 +1,16 @@
 const express = require('express')
 const router = express.Router()
-const cardiosController = require('../controllers/cardioentries') 
-const strengthsController = require('../controllers/strengthentries') 
+const authController = require('../controllers/auth') 
 const dashboardController = require('../controllers/dashboard') 
-const { ensureAuth } = require('../middleware/auth')
+const { ensureAuth, ensureGuest } = require('../middleware/auth')
 
 router.get('/', ensureAuth, dashboardController.getEntries)
 
 router.post('/createCardioEntry', dashboardController.createCardioEntry)
 
-router.put('/editCardioEntry', cardiosController.editCardioEntry)
+router.put('/editCardioEntry', dashboardController.editCardioEntry)
 
-router.delete('/deleteCardioEntry', cardiosController.deleteCardioEntry)
+router.delete('/deleteCardioEntry', dashboardController.deleteCardioEntry)
 
 // ----------------------------------
 
@@ -19,13 +18,15 @@ router.delete('/deleteCardioEntry', cardiosController.deleteCardioEntry)
 
 // ----------------------------------
 
-// router.get('/', ensureAuth, strengthsController.getStrengthEntries)
 
-router.post('/createStrengthEntry', strengthsController.createStrengthEntry)
+router.post('/createStrengthEntry', dashboardController.createStrengthEntry)
 
-router.put('/editStrengthEntry', strengthsController.editStrengthEntry)
+router.put('/editStrengthEntry', dashboardController.editStrengthEntry)
 
-router.delete('/deleteStrengthEntry', strengthsController.deleteStrengthEntry)
+router.delete('/deleteStrengthEntry', dashboardController.deleteStrengthEntry)
+
+
+router.get('/logout', authController.logout)
 
 
 

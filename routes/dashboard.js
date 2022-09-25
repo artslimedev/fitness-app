@@ -5,9 +5,9 @@ const strengthsController = require('../controllers/strengthentries')
 const dashboardController = require('../controllers/dashboard') 
 const { ensureAuth } = require('../middleware/auth')
 
-router.get('/', ensureAuth, dashboardController.getCardioEntries)
+router.get('/', ensureAuth, dashboardController.getEntries)
 
-router.post('/createCardioEntry', cardiosController.createCardioEntry)
+router.post('/createCardioEntry', dashboardController.createCardioEntry)
 
 router.put('/editCardioEntry', cardiosController.editCardioEntry)
 

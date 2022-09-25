@@ -4,15 +4,15 @@ module.exports = {
     './public/**/*.{html,js}', 
     './views/*.ejs', 
     './node_modules/tw-elements/dist/js/**/*.js'],
-  // theme: {
-  //       screens: {
-  //         sm: '480px',
-  //         md: '768px',
-  //         lg: '976px',
-  //         xl: '1440px',
-  //       },
-  //   extend: {},
-  // },
+  theme: {
+        screens: {
+          sm: '480px',
+          md: '768px',
+          lg: '976px',
+          xl: '1440px',
+        },
+    extend: {},
+  },
   daisyui: {
     themes: [
       {
@@ -39,5 +39,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [require("daisyui"), require('tw-elements/dist/plugin')],
+  plugins: [require('daisyui'), require('tw-elements/dist/plugin')],
 }

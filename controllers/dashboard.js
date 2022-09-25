@@ -2,12 +2,13 @@ const CardioEntry = require('../models/Cardio')
 const StrengthEntry = require('../models/Strength')
 
 module.exports = {
-    getCardioEntries: async (req, res) => {
+    getEntries: async (req, res) => {
         try {
-            const cardioEntries = await
-            CardioEntry.find()
+            const cardioEntries = await CardioEntry.find()
+            const strengthEntries = await StrengthEntry.find()
             res.render("dashboard.ejs", {
-                cardioEntries: cardioEntries });
+                cardioEntries: cardioEntries,
+                strengthEntries: strengthEntries });
         } catch (err) {
             if (err) return res.status(500).send(err)
         }
@@ -68,17 +69,18 @@ module.exports = {
 
 
     
-    getStrengthEntries: async (req,res) => {
-        console.log(req.user)
-        try {
-            const entries = await
-            StrengthEntry.find()
-            res.render("dashboard.ejs", {
-                strengthEntries: entries });
-        } catch (err) {
-            if (err) return res.status(500).send(err)
-        }
-    },
+    // getStrengthEntries: async (req,res) => {
+    //     console.log(req.user)
+    //     try {
+    //         const entries = await
+    //         StrengthEntry.find()
+    //         console.log({strengthEntries: entries})
+    //         res.render("dashboard.ejs", {
+    //             strengthEntries: entries });
+    //     } catch (err) {
+    //         if (err) return res.status(500).send(err)
+    //     }
+    // },
     createStrengthEntry: async (req,res)=>{
         try{
             await Strength.create(

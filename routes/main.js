@@ -14,6 +14,6 @@ router.get('/logout', authController.logout)
 router.get('/signup', authController.getSignup)
 router.post('/signup', authController.postSignup)
 router.post('/', cardioController.createCardioEntry)
-router.get('/dashboard', ensureAuth, dashboardController.getCardioEntries, dashboardController.getStrengthEntries)
+router.get('/dashboard', ensureAuth, dashboardController.getEntries)
 
 module.exports = router

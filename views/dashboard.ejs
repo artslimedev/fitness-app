@@ -5,9 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/main.css">
+
     <script src="../node_modules/tw-elements/dist/js/index.min.js"></script>
-    <script src="./js/main.js"></script>
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="../public/js/main.js"></script>
 </head>
 <body class="h-full">
 
@@ -208,7 +209,7 @@
                                 <div class="container mx-auto flex flex-row justify-center">
 
 
-                                    <form action="/cardio" method="POST">
+                                    <form action="/createCardioEntry" method="POST" class="flex flex-row">
 
     
                                     <input type="date" placeholder="Date" class="input input-bordered w-full max-w-xs mr-4"/>
@@ -307,7 +308,7 @@
                                 <div class="container mx-auto flex flex-row justify-center">
                                     
 
-                                    <form action="/strength" method="post">
+                                    <form action="/createStrengthEntry" method="post" class="flex flex-row">
 
     
                                     <input type="date" placeholder="Date" class="input input-bordered w-full max-w-xs mr-4"/>

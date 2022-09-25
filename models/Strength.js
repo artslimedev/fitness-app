@@ -1,22 +1,22 @@
 const mongoose = require('mongoose')
-const workoutSchema = new mongoose.Schema({
+const strengthSchema = new mongoose.Schema({
     date: {
         type: String,
         require: true
     },
-    location: {
+    name: {
         type: String,
         require: true
     },
-    sport: {
+    equipment: {
         type: String,
         require: true
     },
-    time: {
+    muscle: {
         type: String,
         require: true
     },
-    distance: {
+    weight: {
         type: String,
         require: true
     },
@@ -25,4 +25,4 @@ const workoutSchema = new mongoose.Schema({
         require: true
     }
 })
-module.exports = mongoose.model('JournalEntry',workoutSchema, 'workouts')
+module.exports = mongoose.model('StrengthEntry',strengthSchema)

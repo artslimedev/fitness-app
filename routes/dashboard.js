@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const authController = require('../controllers/auth') 
 const dashboardController = require('../controllers/dashboard') 
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
 
@@ -24,9 +23,6 @@ router.post('/createStrengthEntry', dashboardController.createStrengthEntry)
 router.put('/editStrengthEntry', dashboardController.editStrengthEntry)
 
 router.delete('/deleteStrengthEntry', dashboardController.deleteStrengthEntry)
-
-
-router.get('/logout', authController.logout)
 
 
 

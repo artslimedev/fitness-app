@@ -53,7 +53,6 @@ app.use(express.json())
 app.use(logger('dev'))
 
 app.use('/', mainRoutes)
-
 app.use('/dashboard', dashboardRoutes)
   
 

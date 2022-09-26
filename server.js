@@ -4,97 +4,68 @@
 //"start": "nodemon server.js"
 
 const express = require("express")
+const path = require('path');
 const app = express()
-const PORT = 6900;
+const cors = require('cors')
+const PORT = process.env.PORT || 6900;
 const mongoose = require("mongoose")
-require('dotenv').config()
-const JournalEntry = require('./models/journalentry')
+const passport = require('passport')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')
+const methodOverride = require("method-override");
+const flash = require('express-flash')
+const logger = require('morgan')
+const connectDB = require('./config/database')
+const mainRoutes = require('./routes/main')
+const dashboardRoutes = require('./routes/dashboard')
+
+require('dotenv').config({path: './config/.env'})
+
+// Passport config
+require('./config/passport')(passport)
+
+connectDB()
 
 //set middleware
 app.set("view engine", "ejs")
+app.use(express.static('node_modules/tw-elements/dist/js'));
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
+app.use(express.json())
+app.use(logger('dev'))
+app.use(cors())
 
-mongoose.connect(process.env.DB_CONNECTION ,
-    {useNewUrlParser: true},
-    () => (console.log('Connected to db!'))
-)
+//Use forms for put / delete
+app.use(methodOverride("_method"));
 
-//GET METHOD
-
-app.get('/', async (req, res) => {
-    try {
-        JournalEntry.find({}, (err,entries) => {
-            res.render("index.ejs", {
-                journalEntries: entries
-            })
-        })
-    } catch (error) {
-        res.status(500).send({message: error.message})
-    }
-})
-
-//POST
-app.post('/', async (req,res) => {
-    const journalEntry = new JournalEntry(
-        {
-            date: req.body.date,
-            location: req.body.location,
-            sport: req.body.sport,
-            time: req.body.time,
-            distance: req.body.distance,
-            unit: req.body.unit
-        }
-    )
-    try {
-        await journalEntry.save()
-        console.log(journalEntry)
-        res.redirect('/')
-    } catch(err) {
-        if (err) return res.status(500).send(err)
-        res.redirect('/')
-    }
-})
-
-//EDIT OR UPDATE METHOD
-app
-    .route("/edit/:id")
-    .get((req,res) => {
-        const id = req.params.id
-        JournalEntry.find({}, (err,entries) => {
-            res.render('edit.ejs', {
-                journalEntries: entries, idEntry: id })
-        })
+// Sessions
+app.use(
+    session({
+      secret: 'keyboard cat',
+      resave: false,
+      saveUninitialized: false,
+      store: MongoStore.create({mongoUrl:process.env.DB_STRING}),
     })
-    .post((req,res) => {
-        const id = req.params.id
-        JournalEntry.findByIdAndUpdate(
-            id,
-            {
-                date: req.body.date,
-                location: req.body.location,
-                sport: req.body.sport,
-                time: req.body.time,
-                distance: req.body.distance,
-                unit: req.body.unit
-            },
-            err => {
-                if (err) return res.status(500).send(err)
-                res.redirect('/')
-            }
-        )
-    })
+  )
+  
+// Passport middleware
+app.use(passport.initialize())
+app.use(passport.session())
 
-//DELETE
-app
-    .route("/remove/:id")
-    .get((req,res) => {
-        const id = req.params.id
-        JournalEntry.findByIdAndRemove(id, err => {
-            if (err) return res.status(500).send(err)
-            res.redirect('/')
-        })
-    })
+app.use(flash())
+
+app.use(express.json())
+app.use(logger('dev'))
+
+app.use('/', mainRoutes)
+app.use('/dashboard', dashboardRoutes)
+  
+
+
+// mongoose.connect(process.env.DB_CONNECTION ,
+//     {useNewUrlParser: true},
+//     () => (console.log('Connected to db!'))
+// )
 
 app.listen(process.env.PORT || PORT, () => {
     console.log(`Server is running on port ${PORT}`)

@@ -2,14 +2,15 @@
 module.exports = {
   content: [
     './public/**/*.{html,js}', 
-    './views/*.ejs', 
+    './views/*.{html, ejs}', 
     './node_modules/tw-elements/dist/js/**/*.min.js'],
   theme: {
         screens: {
-          sm: '480px',
+          xs: '480px',
+          sm: '640px',
           md: '768px',
           lg: '976px',
-          xl: '1440px',
+          xl: '1024px',
         },
     extend: {},
   },

@@ -6,10 +6,12 @@ module.exports = {
     './node_modules/tw-elements/dist/js/**/*.min.js'],
   theme: {
         screens: {
+          xs: '300px',
           sm: '480px',
           md: '768px',
           lg: '976px',
-          xl: '1440px',
+          xl: '1024',
+          xxl: '1440px',
         },
     extend: {},
   },

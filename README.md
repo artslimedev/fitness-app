@@ -3,7 +3,7 @@ This is a fitness journal made to record and track your journey to peak physical
 
 **Link to project:** https://tempest.cyclic.app/
 
-![alt tag](https://i.ibb.co/HHfyPYy/tempest.jpg)
+![alt tag](https://i.ibb.co/ZdTpbbW/tempest.jpg)
 
 ## How It's Made:
 

@@ -17,11 +17,15 @@ const strengthSchema = new mongoose.Schema({
         require: true
     },
     weight: {
-        type: String,
+        type: Number,
         require: true
     },
     unit: {
         type: String,
+        require: true
+    },
+    heartRate: {
+        type: Number,
         require: true
     },
     user: {

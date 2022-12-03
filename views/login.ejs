@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="mytheme">
+<html lang="en" data-theme="bluegreentheme">
 <head>
 
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
     <script src="./js/main.js"></script>
 
 </head>
-<body class="bg-base-200">
+<body class="h-screen">
 
     <!-------------------------------------------------- 
         
@@ -22,31 +22,33 @@
     --------------------------------------------------->
 
 
-<div class="navbar bg-base-100">
-  <div class="navbar-start">
-    <div class="dropdown">
-      <label tabindex="0" class="btn btn-ghost lg:hidden">
-        
-      </label>
-      <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-        <li><a href="/">HOME</a></li>
-        <li><a href="/about">ABOUT</a></li>
-        <li><a href="/dashboard">DASHBOARD</a></li>
-      </ul>
-    </div>
-    <a class="btn btn-ghost normal-case text-xl">SlimeFit</a>
-  </div>
-  <div class="navbar-center hidden lg:flex">
-    <ul class="menu menu-horizontal p-0">
-        <li><a href="/">HOME</a></li>
-        <li><a href="/about">ABOUT</a></li>
-        <li><a href="/dashboard">DASHBOARD</a></li>
-      </ul>
-  </div>
-  <div class="navbar-end">
-    <a href="/signup" class="btn m-2 btn-primary">SIGNUP</a>
-  </div>
-</div>
+    <div class="navbar bg-accent text-accent-content">
+      <div class="navbar-start">
+        <div class="dropdown">
+          <label tabindex="0" class="btn btn-ghost lg:hidden">
+
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            
+          </label>
+          <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+            <li><a href="/" class="focused:bg-secondary-focus">HOME</a></li>
+            <li><a href="/about" class="focused:bg-secondary-focus">ABOUT</a></li>
+            <li><a href="/dashboard" class="focused:bg-secondary-focus">DASHBOARD</a></li>
+          </ul>
+        </div>
+        <a class="btn btn-ghost normal-case text-xl">SlimeFit</a>
+      </div>
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal p-0">
+          <li><a href="/" class="focused:bg-secondary-focus">HOME</a></li>
+          <li><a href="/about" class="focused:bg-secondary-focus">ABOUT</a></li>
+          <li><a href="/dashboard" class="focused:bg-secondary-focus">DASHBOARD</a></li>
+        </ul>
+      </div>
+      <div class="navbar-end">
+        <a href="/signup" class="btn m-2 btn-secondary">SIGNUP</a>
+      </div>
+        </div>
 
     <!-------------------------------------------------- 
         
@@ -58,11 +60,11 @@
     <div class="hero min-h-screen ml-18">
         <div class="hero-content flex-col lg:flex-row-reverse">
           <div class="text-center lg:text-left lg:ml-28">
-            <h1 class="text-5xl font-bold">Login now!</h1>
-            <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+            <h1 class="text-5xl font-bold">Welcome Back!</h1>
+            <p class="py-6">Get back to work and continue tracking your progress. While you're here, time to review and see how far you've already gone!</p>
           </div>
 
-          <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-accent text-accent-content">
 
             <div class="card-body">
 
@@ -94,7 +96,7 @@
                     </div>
                     
                     <div class="form-control mt-6">
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-secondary hover:btn-secondary-focus">Login</button>
                     </div>
 
               </form>
@@ -110,7 +112,7 @@
       
       --------------------------------------------------->
   
-      <footer class="footer items-center p-4 bg-neutral text-neutral-content">
+      <footer class="footer items-center p-4 bg-accent text-accent-content">
           <div class="items-center grid-flow-col">
             <p>Copyright © 2022 - All right reserved</p>
           </div> 

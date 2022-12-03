@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 const cardioEntrySchema = new mongoose.Schema({
     date: {
-        type: String,
-        require: true
+        type: Date,
+        require: true,
     },
     location: {
         type: String,
@@ -17,11 +17,15 @@ const cardioEntrySchema = new mongoose.Schema({
         require: true
     },
     distance: {
-        type: String,
+        type: Number,
         require: true
     },
     unit: {
         type: String,
+        require: true
+    },
+    heartRate: {
+        type: Number,
         require: true
     },
     user: {

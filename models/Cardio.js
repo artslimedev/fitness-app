@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const cardioEntrySchema = new mongoose.Schema({
     date: {
-        type: Date,
+        type: String,
         require: true,
     },
     location: {

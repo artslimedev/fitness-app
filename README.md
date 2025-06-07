@@ -1,8 +1,6 @@
 # Tempest Fitness Journal
 This is a fitness journal made to record and track your journey to peak physical fitness. The goal is to be able to track various exercises and workouts, in order to see over time how your fitness metrics are improving. Most tracking apps only show you overall weightloss or the present metrics, but Tempest is made so you can actually see the progression and continue to be motivated by progress.
 
-**Link to project:** https://tempest.cyclic.app/
-
 ![alt tag](https://i.ibb.co/ZdTpbbW/tempest.jpg)
 
 ## How It's Made:
